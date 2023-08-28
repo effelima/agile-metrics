@@ -6,7 +6,8 @@ class DashboardControllers {
         let kpi = {
             mean : issues.getAverageLeadTime(),
             median : issues.getMedianLeadTime(),
-            mode : issues.getModeLeadTime()
+            //mode : issues.getModeLeadTime(),
+            frequency : issues.getModeFrequencyLeadTime()
         }
         return res.json(kpi)
     }

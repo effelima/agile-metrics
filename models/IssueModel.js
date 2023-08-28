@@ -25,6 +25,24 @@ class IssueModel {
         let mode = Mathjs.mode(this.#lead_time)
         return mode
     }
+
+    getModeFrequencyLeadTime() {
+        let mode = Mathjs.mode(this.#lead_time)
+        let frequency_mode = []
+        mode.forEach((m,i) => {
+            
+            frequency_mode.push({
+                mode : m,
+                frequency : 0
+            })
+
+            this.#lead_time.forEach((lt, j) => {
+                if (lt == frequency_mode[i].mode)
+                    frequency_mode[i].frequency++
+            })
+        })
+        return frequency_mode
+    }
 }
 
 module.exports = IssueModel
