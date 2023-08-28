@@ -25,9 +25,12 @@ class FakeDataGenerator {
             date_now[0].setDate(date_now[0].getDate() - start_rnd)
             date_now[1].setDate(date_now[1].getDate() - end_rnd)
 
+            let lead_time = (date_now[1].getTime() - date_now[0].getTime())/(1000*60*60*24)
+
             workflow.push({
                 title : 'AAAAAA',
                 current_state : process.env.WORKFLOW_DONE_STATE,
+                lead_time : lead_time,
                 states : []
             })
 
