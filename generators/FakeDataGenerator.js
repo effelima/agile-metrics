@@ -8,10 +8,11 @@ class FakeDataGenerator {
 
     generate() {
 
+        let qt_issues = 100
         let workflow_states = process.env.WORKFLOW_STATES.split(',')
         let workflow = []
 
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < qt_issues; i++) {
 
             let min = 1;
             let max = 90;
