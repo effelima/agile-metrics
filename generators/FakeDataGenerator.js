@@ -1,21 +1,17 @@
 /**
- * Generate fake data just to test
+ * Generate fake data just for test
  */
 
 require('dotenv').config()
 
 class FakeDataGenerator {
 
-    constructor() {
-        return this.generate()
-    }
-
     generate() {
 
         let workflow_states = process.env.WORKFLOW_STATES.split(',')
         let workflow = []
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 40; i++) {
 
             let min = 1;
             let max = 90;
@@ -43,12 +39,12 @@ class FakeDataGenerator {
                 })
             })
 
-            console.log(workflow[i])
-
         }
+
+        return workflow
 
     }
 
 }
 
-module.exports = new FakeDataGenerator()
+module.exports = FakeDataGenerator
