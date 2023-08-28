@@ -2,7 +2,13 @@ const IssueModel = require('../models/IssueModel')
 
 class DashboardControllers {
     get(req, res) {
-        return res.json(new IssueModel)
+        let issues = new IssueModel()
+        let kpi = {
+            mean : issues.getAverageLeadTime(),
+            median : issues.getMedianLeadTime(),
+            mode : issues.getModeLeadTime()
+        }
+        return res.json(kpi)
     }
 }
 
