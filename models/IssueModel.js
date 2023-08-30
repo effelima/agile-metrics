@@ -17,6 +17,10 @@ class IssueModel {
         this.#lead_time = this.#model.map(a => a.lead_time)
     }
 
+    getAll() {
+        return this.#model
+    }
+
     getAllLt() {
         return this.#lead_time
     }
@@ -62,6 +66,34 @@ class IssueModel {
     }
 
     getSigma() {
+
+        let issues_per_state = {
+            to_do : [],
+            doing : [],
+            done : []
+        }
+
+        this.#model.forEach((issue,i) => {
+            if (issue.current_state == 'to do') {
+                issues_per_state.to_do.push(issue)
+            } else {
+                if (issue.current_state == 'doing') {
+                    issues_per_state.doing.push(issue)
+                } else {
+                    issues_per_state.done.push(issue)
+                }
+            }
+        })
+
+        return issues_per_state.done
+
+
+
+
+
+        return issues_per_state
+
+
         let total_lt = this.#lead_time.length
         let sum_total_lt = 0
         let variance = 0
@@ -75,6 +107,8 @@ class IssueModel {
         let NP = proportion_average * 100
 
         // dentro da amostra coletada, quantos foram entregues, após isso, calculamos a proporção
+        // no periodo coletado, qual o total de itens? desse total, quantos foram entregues?
+        // com essas respostas, chegaremos na proporção de entregas
 
         return NP
 
