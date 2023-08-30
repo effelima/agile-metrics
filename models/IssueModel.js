@@ -85,7 +85,52 @@ class IssueModel {
             }
         })
 
-        return issues_per_state.done
+
+        let lt_weeks = []
+        // let frequency = []
+        issues_per_state.done.forEach((lt,i) => {
+            lt_weeks.push(lt.lt_weeks)
+            /**
+             * useless for now
+             
+            if (! frequency.find(item => item.lt == lt.lt_weeks))
+                frequency.push({lt : lt.lt_weeks, frequency : 0})
+            
+            for(let j=0; j<frequency.length; j++) {
+                if (frequency[j].lt === lt.lt_weeks)
+                    frequency[j].frequency++
+            }
+            */
+        })
+
+        /*
+         * useless for now
+
+        let px = 0
+        let p = 0
+        issues_per_state.done.forEach((lt, i) => {
+            let w = frequency.find(item => item.lt == lt.lt_weeks)
+            px += w.frequency * lt.lt_weeks
+            p += w.frequency
+        })
+        */
+
+        let std = Mathjs.std(lt_weeks)
+        let mean = Mathjs.mean(lt_weeks)
+        let total_samples = lt_weeks.length
+
+        // using confidence formula
+        let upper_limit = mean + 1.28 * (std / Mathjs.sqrt(total_samples))
+        let lower_limit = mean - 1.28 * (std / Mathjs.sqrt(total_samples))
+
+        return {
+            limit : {
+                upper : upper_limit,
+                lower : lower_limit
+            },
+            // fr : frequency,
+            lt : lt_weeks
+        }
 
 
 
