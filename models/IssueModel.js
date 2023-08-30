@@ -62,10 +62,26 @@ class IssueModel {
     }
 
     getSigma() {
-        // 3 is a value well know in six sigma
-        let sigma = this.#std_deviation * 3
-        this.#sigma.inf = this.#std_deviation - sigma
-        this.#sigma.sup = this.#std_deviation + sigma
+        let total_lt = this.#lead_time.length
+        let sum_total_lt = 0
+        let variance = 0
+        
+
+        for (let i=0; i<total_lt; i++) {
+            sum_total_lt += this.#lead_time[i]
+        }
+
+        let proportion_average = 1/total_lt * (sum_total_lt)
+        let NP = proportion_average * 100
+
+        // dentro da amostra coletada, quantos foram entregues, após isso, calculamos a proporção
+
+        return NP
+
+        variance = sum_of_squares / total_lt
+        let std_deviation = Mathjs.sqrt(variance)
+
+        this.#sigma = (3 * std_deviation) + this.#average_lt
 
         return this.#sigma
     }
