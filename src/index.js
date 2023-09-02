@@ -11,7 +11,7 @@ import makeCallback from './express-callback/index.js'
 
 dotenv.config()
 
-const apiRoot = process.env.DM_API_ROOT
+const apiRoot = process.env.API_ROOT
 const app = express()
 
 app.use(bodyParser.json())
