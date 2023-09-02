@@ -1,5 +1,3 @@
-// import Id from '../Id'
-
 export default function makeLeadTimeDb ({ makeDb }) {
     return Object.freeze({
         findByTeamId,

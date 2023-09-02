@@ -1,13 +1,22 @@
-import fs from 'fs'
+import fs from 'fs';
 
-export default class DB {
+
+export default class Local {
 
     constructor () {
-        this._result = {}
+        this._result = {};
     }
 
-    isLocal () {
-        return true
+    isConnected () {
+        return true;
+    }
+
+    connect () {
+        return this
+    }
+
+    db () {
+        return this
     }
 
     collection (tbName) {
@@ -16,17 +25,17 @@ export default class DB {
 
     find (query = {}) {
         let rawdata = fs.readFileSync('src/drivers/local-db/local.json');
-        this._result = JSON.parse(rawdata) 
+        this._result = JSON.parse(rawdata);
 
         if (query.current_state) {
-            this._result = this._result.filter((issue) => issue.current_state == 'done')
+            this._result = this._result.filter((issue) => issue.current_state == 'done');
         }
 
-        return this
+        return this;
     }
 
-    toArray() {
-        return this._result
+    toArray () {
+        return this._result;
     }
 
 }

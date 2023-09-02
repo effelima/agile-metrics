@@ -1,16 +1,14 @@
 import makeLeadTimeDb from './issues-db.js'
-import DB from '../drivers/index.js'
+import makeDataBaseConn from '../drivers/index.js'
 
-const client = new DB()
+const client = makeDataBaseConn
 
 export async function makeDb () {
-    if (! client.isLocal()) {
-        if (!client.isConnected()) {
-            await client.connect()
-        }
-        return client.db(dbName)
+    if (!client.isConnected()) {
+        await client.connect()
     }
-    return client
+    return client.db()
+
 }
 
 

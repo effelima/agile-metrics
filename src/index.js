@@ -9,7 +9,7 @@ import {
 
 import makeCallback from './express-callback/index.js'
 
-dotenv.config()
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 const apiRoot = process.env.API_ROOT
 const app = express()
