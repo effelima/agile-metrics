@@ -15,6 +15,10 @@ export default function makeUpperLowerLimits ({ leadTimeDb }) {
         const meanLeadTime = mean(weekLeadTime)
         const countLeadTime = weekLeadTime.length
 
+        /**
+         * Confidence Interval
+         * 1.28 is used for 80% of confidence
+         **/
         const leadTimeLimits = {
             upperLimit : meanLeadTime + 1.28 * (stdLeadTime / sqrt(countLeadTime)),
             lowerLimit : meanLeadTime - 1.28 * (stdLeadTime / sqrt(countLeadTime))
