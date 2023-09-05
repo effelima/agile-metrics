@@ -4,7 +4,8 @@ import dotenv from 'dotenv'
 
 import {
     getLeadTime,
-    getUpperLowerLimits
+    getUpperLowerLimits,
+    getEstimation
 } from './controllers/index.js'
 
 import makeCallback from './express-callback/index.js'
@@ -23,9 +24,10 @@ app.use((_, res, next) => {
 
 app.get(`${apiRoot}/lead-time`, makeCallback(getLeadTime))
 app.get(`${apiRoot}/get-upper-lower-limits`, makeCallback(getUpperLowerLimits))
+app.get(`${apiRoot}/get-estimation`, makeCallback(getEstimation))
 
 
-// listen for re;quests
+// listen for requests
 app.listen(3000, () => {
     console.log('Server is listening on port 3000')
 })

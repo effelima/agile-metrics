@@ -2,6 +2,7 @@ import { std, mean, sqrt } from 'mathjs'
 
 export default function makeUpperLowerLimits ({ leadTimeDb }) {
     return async function listUpperLowerLimits({ teamId }) {
+
         if (!teamId) {
             throw new Error('You must supply a team id.')
         }
@@ -19,7 +20,7 @@ export default function makeUpperLowerLimits ({ leadTimeDb }) {
 
         return {
             upperLimit : leadTimeUpperLimit,
-            downLimit : leadTimeDownLimit
+            lowerLimit : leadTimeDownLimit
         }
     }
   }
