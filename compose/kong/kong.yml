@@ -1,0 +1,30 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+# Aplication service that will respond when
+# we try to access :8000 (kong default port)
+- name: am-service
+  host: am-app
+  port: 3000
+  protocol: http
+  routes:
+  - name: api-req
+    paths:
+    - /api
+    strip_path: false
+# Plugin to use JWT
+plugins:
+  - name: jwt
+    route:  api-req
+    enabled: true
+    config:
+      key_claim_name: kid
+      claims_to_verify: 
+        - exp
+# the user who will consume ower services
+consumers:
+  - username: my_user
+jwt_secrets:
+  - consumer: my_user
+    secret: "Nr50ZtVqIg" # Just a random string for test
